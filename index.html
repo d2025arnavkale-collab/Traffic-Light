@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Elegant Traffic Light</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      font-family: "Poppins", sans-serif;
+    }
+
+   .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px; /* perfect spacing */
+}
+
+
+    h1 {
+      color: white;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+      font-weight: 500;
+    }
+
+    .traffic-light {
+      width: 110px;
+      background: linear-gradient(180deg, #1c1c1c, #2e2e2e);
+      padding: 25px 20px;
+      border-radius: 30px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+      margin-bottom: 25px;
+    }
+
+    .light {
+      position: relative;
+      width: 65px;
+      height: 65px;
+      margin: 15px auto;
+      border-radius: 50%;
+      background: #111;
+      opacity: 0.3;
+      overflow: hidden;
+      transition: all 0.4s ease;
+    }
+
+    /* IMAGE OVERLAY */
+    .light::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: url("kiara.jpg"); /* 🔥 PUT YOUR IMAGE HERE */
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .light.on::after {
+      opacity: 0.35; /* semi-transparent image */
+    }
+
+    .red.on {
+      background: radial-gradient(circle, #ff6b6b, #c0392b);
+      opacity: 1;
+      box-shadow: 0 0 25px #ff6b6b;
+    }
+
+    .yellow.on {
+      background: radial-gradient(circle, #ffe066, #f1c40f);
+      opacity: 1;
+      box-shadow: 0 0 25px #ffe066;
+    }
+
+    .green.on {
+      background: radial-gradient(circle, #6bff95, #27ae60);
+      opacity: 1;
+      box-shadow: 0 0 25px #6bff95;
+    }
+
+    button {
+      padding: 12px 30px;
+      font-size: 16px;
+      border: none;
+      border-radius: 30px;
+      background: linear-gradient(135deg, #ff758c, #ff7eb3);
+      color: white;
+      cursor: pointer;
+      letter-spacing: 1px;
+      box-shadow: 0 10px 25px rgba(255, 120, 170, 0.4);
+      transition: all 0.2s ease;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 30px rgba(255, 120, 170, 0.6);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Traffic Light</h1>
+
+    <div class="traffic-light">
+      <div id="red" class="light red on"></div>
+      <div id="yellow" class="light yellow"></div>
+      <div id="green" class="light green"></div>
+    </div>
+
+    <button onclick="changeLight()">Cycle</button>
+  </div>
+
+  <script>
+    let currentLight = "red";
+
+    function changeLight() {
+      document.getElementById("red").classList.remove("on");
+      document.getElementById("yellow").classList.remove("on");
+      document.getElementById("green").classList.remove("on");
+
+      if (currentLight === "red") {
+        currentLight = "green";
+      } else if (currentLight === "green") {
+        currentLight = "yellow";
+      } else {
+        currentLight = "red";
+      }
+
+      document.getElementById(currentLight).classList.add("on");
+    }
+  </script>
+
+</body>
+</html>
